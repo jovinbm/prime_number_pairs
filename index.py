@@ -156,6 +156,3 @@ class PRIME:
 
 
 P = PRIME()
-P.find_prime_numbers()
-P.find_prime_number_pairs()
-print P.prime_number_pairs
