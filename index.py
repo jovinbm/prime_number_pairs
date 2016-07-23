@@ -26,6 +26,7 @@ def get_user_input_str(question_string, default):
 class PRIME:
     def __init__(self):
         self.id = 'prime_pair_generator'
+        self.matching_prime_numbers = []
         print 'Welcome to prime number pairs generator'
         time.sleep(1)
 
@@ -152,7 +153,41 @@ class PRIME:
                 if (prime - other_prime) in self.powers:
                     self.prime_number_pairs.append((prime, other_prime))
 
+                    if prime not in self.matching_prime_numbers:
+                        self.matching_prime_numbers.append(prime)
+
+                    if other_prime not in self.matching_prime_numbers:
+                        self.matching_prime_numbers.append(other_prime)
+
         return True
+
+    def rule_checks(self):
+        limitStart = 2
+        limitEnd = 50000
+
+        dontCheck = []
+
+        print '###################'
+        print ''
+        print self.prime_numbers
+        print '###################'
+        print ''
+        print self.matching_prime_numbers
+        print '###################'
+        print ''
+
+        ruleChecks = True
+        for i in range(0, len(self.prime_numbers)):
+            if (self.prime_numbers[i] >= limitStart) and (self.prime_numbers[i] <= limitEnd):
+                if self.prime_numbers[i] not in self.matching_prime_numbers:
+                    dontCheck.append(self.prime_numbers[i])
+                    ruleChecks = False
+
+        if ruleChecks:
+            print 'Law checks'
+        else:
+            print 'Law does not check because of: ', dontCheck
 
 
 P = PRIME()
+P.rule_checks()
